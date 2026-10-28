@@ -1,0 +1,34 @@
+{
+  "environment": {
+    "xcode": "",
+    "runtime": "",
+    "macos": "",
+    "ffmpeg": ""
+  },
+  "takes": [
+    {
+      "name": "draft-continuity",
+      "language": "",
+      "before": {
+        "app_pid": null,
+        "hinge_angle": null,
+        "active_display": null,
+        "content_id": "",
+        "draft": ""
+      },
+      "after": {
+        "app_pid": null,
+        "hinge_angle": null,
+        "active_display": null,
+        "content_id": "",
+        "draft": ""
+      },
+      "restarted": false,
+      "source_files": [],
+      "screenshots": [],
+      "visual_review": "pending",
+      "saved": false
+    }
+  ],
+  "limitations": []
+}

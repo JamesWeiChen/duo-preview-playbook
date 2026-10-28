@@ -1,0 +1,75 @@
+{
+  "language": "zh-Hant",
+  "transition_seconds": 0.4,
+  "bezel_scale": 0.336,
+  "bezels": {
+    "outer": {
+      "file": "../local-assets/apple/PNG/iPhone Duo - Star White - Outer Closed Portrait.png",
+      "canvas": [
+        1574,
+        2194
+      ],
+      "screen": [
+        88,
+        80,
+        1398,
+        2034
+      ]
+    },
+    "inner": {
+      "file": "../local-assets/apple/PNG/iPhone Duo - Star White - Inner Open Landscape.png",
+      "canvas": [
+        3093,
+        2247
+      ],
+      "screen": [
+        120,
+        120,
+        2853,
+        2007
+      ]
+    }
+  },
+  "shots": [
+    {
+      "file": "../local-assets/recordings/zh-Hant/A-cover.mov",
+      "start": 3,
+      "duration": 4,
+      "display": "outer",
+      "caption": "闔上，隨手查看講題",
+      "kind": "video"
+    },
+    {
+      "file": "../local-assets/recordings/zh-Hant/A-open.png",
+      "start": 0,
+      "duration": 5,
+      "display": "inner",
+      "caption": "展開，議程與講題並排",
+      "kind": "still"
+    },
+    {
+      "file": "../local-assets/recordings/zh-Hant/B1-inner-write.mov",
+      "start": 1,
+      "duration": 6,
+      "display": "inner",
+      "caption": "一邊參照，一邊記錄",
+      "kind": "video"
+    },
+    {
+      "file": "../local-assets/recordings/zh-Hant/B2-cover-note.mov",
+      "start": 1,
+      "duration": 5,
+      "display": "outer",
+      "caption": "再闔上，剛寫的筆記還在",
+      "kind": "video"
+    },
+    {
+      "file": "../local-assets/recordings/zh-Hant/B3-reopen-save.mov",
+      "start": 1,
+      "duration": 7,
+      "display": "inner",
+      "caption": "再展開，接著寫、接著存",
+      "kind": "video"
+    }
+  ]
+}

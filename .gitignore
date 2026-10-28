@@ -1,0 +1,12 @@
+local-assets/
+output/
+.venv/
+__pycache__/
+.DS_Store
+*.dmg
+*.psd
+*.mov
+*.mp4
+*.png
+*.jpg
+*.log

@@ -1,0 +1,75 @@
+{
+  "language": "en",
+  "transition_seconds": 0.4,
+  "bezel_scale": 0.336,
+  "bezels": {
+    "outer": {
+      "file": "../local-assets/apple/PNG/iPhone Duo - Star White - Outer Closed Portrait.png",
+      "canvas": [
+        1574,
+        2194
+      ],
+      "screen": [
+        88,
+        80,
+        1398,
+        2034
+      ]
+    },
+    "inner": {
+      "file": "../local-assets/apple/PNG/iPhone Duo - Star White - Inner Open Landscape.png",
+      "canvas": [
+        3093,
+        2247
+      ],
+      "screen": [
+        120,
+        120,
+        2853,
+        2007
+      ]
+    }
+  },
+  "shots": [
+    {
+      "file": "../local-assets/recordings/en/A-cover.mov",
+      "start": 3,
+      "duration": 4,
+      "display": "outer",
+      "caption": "Closed. Your talk at a glance.",
+      "kind": "video"
+    },
+    {
+      "file": "../local-assets/recordings/en/A-open.png",
+      "start": 0,
+      "duration": 5,
+      "display": "inner",
+      "caption": "Open. Agenda and details together.",
+      "kind": "still"
+    },
+    {
+      "file": "../local-assets/recordings/en/B1-inner-write.mov",
+      "start": 1,
+      "duration": 6,
+      "display": "inner",
+      "caption": "Refer and write, side by side.",
+      "kind": "video"
+    },
+    {
+      "file": "../local-assets/recordings/en/B2-cover-note.mov",
+      "start": 1,
+      "duration": 5,
+      "display": "outer",
+      "caption": "Close it. Your draft stays with you.",
+      "kind": "video"
+    },
+    {
+      "file": "../local-assets/recordings/en/B3-reopen-save.mov",
+      "start": 1,
+      "duration": 7,
+      "display": "inner",
+      "caption": "Reopen. Pick up where you left off.",
+      "kind": "video"
+    }
+  ]
+}
