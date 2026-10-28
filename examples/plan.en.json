@@ -33,7 +33,7 @@
   "shots": [
     {
       "file": "../local-assets/recordings/en/A-cover.mov",
-      "start": 3,
+      "start": 1,
       "duration": 4,
       "display": "outer",
       "caption": "Closed. Your talk at a glance.",

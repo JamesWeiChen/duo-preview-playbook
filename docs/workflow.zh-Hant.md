@@ -44,6 +44,8 @@ python3 scripts/record.py --device YOUR_UDID --display 1 --seconds 12 local-asse
 
 開闔後讀回 `duoctl state` 的實測姿勢與啟用螢幕，指令成功不等於畫面正確。本次半折可能讀到約 91–95 度，展示不必糾結正好 90 度。
 
+後來英文重拍另發現：完全靜止畫面實際錄九秒，卻只寫一幀、容器長度僅 0.07 秒。錄影程序經過時間不等於影片長度，裁切前一定要讀容器 duration。需要時錄入真正的 UI 操作產生後續幀，或明確標為截圖定格；不能補長靜態影格後稱為連續錄影。
+
 同一模擬器同時錄兩個顯示器會出現 `Resource busy`。先結束第一段，再開闔、確認 App，然後錄目前啟用螢幕。錄未啟用螢幕會停在上一幀，**不會錄到實體開闔過程**。
 
 腳本只向自己啟動的 recorder PID 發 SIGINT，等待影片容器寫完；不要用 `pkill` 殺全部 simctl。保留錄影 log，連續性段落前後比對 App PID。安裝 duoctl 不代表所有未來 session 都自動取得 CoreSimulator 權限。
@@ -58,7 +60,7 @@ python3 scripts/record.py --device YOUR_UDID --display 1 --seconds 12 local-asse
 
 ## 6. 可重現剪輯
 
-使用 `examples/plan.zh-Hant.json` 或 `plan.en.json`，修改來源路徑、時間及字幕。`kind: still` 代表真實截圖定格，不是錄影動態。來源必須長於裁切區間；腳本不會偷偷補長短錄影來掩蓋缺少的素材。
+使用 `examples/plan.zh-Hant.json` 或 `plan.en.json`，修改來源路徑、時間及字幕。`kind: still` 代表真實截圖定格，不是錄影動態。腳本會檢查實際容器長度，拒絕超出來源的區間。來源必須長於裁切區間；腳本不會偷偷補長短錄影來掩蓋缺少的素材。
 
 - 先 `fps=30` **再** `trim`；模擬器靜態畫面可能是極低幀率 VFR。
 - FFmpeg 先依輸入資訊轉正像素，編碼後用 `-display_rotation 0 -c copy` remux。這次 FFmpeg 7.1 僅設 `-metadata:s:v rotate=0` 無法清除殘留旋轉矩陣。

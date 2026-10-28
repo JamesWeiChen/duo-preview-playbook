@@ -44,6 +44,8 @@ python3 scripts/record.py --device YOUR_UDID --display 1 --seconds 12 local-asse
 
 Read `duoctl state` after folds; it must confirm measured posture and active screen. A completed command does not prove the app layout is correct. Half-fold readings around 91–95° in our runtime were not worth forcing to exactly 90° for this story.
 
+A later English retake exposed another limit: a completely static scene recorded for nine wall-clock seconds produced only one encoded frame and a 0.07-second container. Recorder elapsed time is not media duration. Inspect the container duration before choosing trims. Capture genuine UI activity to create later frames, or explicitly label the scene as a screenshot hold; never call a padded still continuous recording.
+
 Only one `simctl recordVideo` could own the device at a time. Recording both display IDs simultaneously returned `Resource busy`. Finish the first recorder, fold, verify the app, then record the active display. A recording of an inactive panel froze its previous frame. It did **not** capture a physical hinge movement.
 
 The wrapper sends SIGINT only to the child recorder it created, then waits for container finalization. Never `pkill` all simctl processes. Keep logs and compare app PIDs around each continuity sequence. Permission to install duoctl does not grant future sessions permission to access CoreSimulator.
@@ -58,7 +60,7 @@ Fill `examples/evidence.template.json`: app PID before/after, measured posture, 
 
 ## 6. Edit reproducibly
 
-Use `examples/plan.en.json` or `plan.zh-Hant.json`. Replace paths, trim points and source language. `kind: still` loops a genuine screenshot; do not label it as recorded motion. Keep sources longer than the selected interval. The renderer does not silently fill a short recording to conceal missing footage.
+Use `examples/plan.en.json` or `plan.zh-Hant.json`. Replace paths, trim points and source language. `kind: still` loops a genuine screenshot; do not label it as recorded motion. The renderer checks actual container duration and rejects intervals that exceed it. Keep sources longer than the selected interval. The renderer does not silently fill a short recording to conceal missing footage.
 
 - Apply `fps=30` **before** `trim`: simulator footage can be highly variable-frame-rate during static scenes.
 - Let FFmpeg apply input rotation once, then remux the encoded segment with `-display_rotation 0 -c copy`. In our FFmpeg 7.1 run, `-metadata:s:v rotate=0` alone did not remove the retained display matrix.

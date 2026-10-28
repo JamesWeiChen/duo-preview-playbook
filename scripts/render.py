@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -48,6 +49,16 @@ def render(plan_path, output, mode, font):
         raise FileExistsError(f"Choose a new output name: {output}")
     output.parent.mkdir(parents=True, exist_ok=True)
     ff = ffmpeg_path()
+    for shot in shots:
+        if shot.get("kind") == "still":
+            continue
+        source = (root / shot["file"]).resolve()
+        probe = subprocess.run([ff, "-hide_banner", "-i", str(source)], capture_output=True, text=True)
+        match = re.search(r"Duration: (\d+):(\d+):([\d.]+)", probe.stderr)
+        available = sum(float(v) * m for v, m in zip(match.groups(), [3600, 60, 1])) if match else None
+        required = float(shot.get("start", 0)) + float(shot["duration"])
+        if available is None or available + 1 / 30 < required:
+            raise ValueError(f"{source.name}: needs {required:.2f}s but media duration is {available}; recorder elapsed time is not media duration")
     with tempfile.TemporaryDirectory(prefix="duo-preview-") as temporary:
         work = Path(temporary)
         # Safe relative filter paths: no shell interpolation and no caption string in filters.
